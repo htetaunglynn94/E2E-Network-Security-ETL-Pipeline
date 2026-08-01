@@ -4,6 +4,7 @@ Version: 0.0.1
 Author: Htet Aung Lynn
 Author-email: htetaunglynn.datascientist@gmail.com
 Requires-Dist: python-dotenv
+Requires-Dist: ipykernel
 Requires-Dist: pandas
 Requires-Dist: numpy
 Requires-Dist: pylance
