@@ -6,7 +6,7 @@ Author-email: htetaunglynn.datascientist@gmail.com
 Requires-Dist: python-dotenv
 Requires-Dist: pandas
 Requires-Dist: numpy
-Requires-Dist: pymongo
+Requires-Dist: pylance
 Requires-Dist: certifi
 Requires-Dist: pymongo
 Requires-Dist: pymongo[srv]==3.11

@@ -1,14 +1,32 @@
+import os
+import sys
+import json
+import certifi
+import pandas as pd
+import numpy as np
+import pymongo 
+from network_security.exception.exception import NetworkSecurityException
+from network_security.logging.logger import logging
 
-from pymongo import MongoClient
+from dotenv import load_dotenv
+load_dotenv()
 
-uri = "mongodb+srv://htetaunglynn94_db_user:Admin_123@cluster0.9al0bl1.mongodb.net/?appName=Cluster0"
+MONGO_DB_URL = os.getenv("MONGO_DB_URL")
+print(MONGO_DB_URL)
 
-# Create a new client and connect to the server
-client = MongoClient(uri)
+ca = certifi.where() # certificate authority
 
-# Send a ping to confirm a successful connection
-try:
-    client.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
-except Exception as e:
-    print(e)
+class NetworkDataExtract():
+    def __init__(self):
+        try:
+            pass
+        except Exception as e:
+            raise NetworkSecurityException(e, sys)
+
+    def csv_to_json_converter(self, file_path):
+        try:
+            data = pd.read_csv(file_path)
+            data.reset_index(drop=True, inplace=True)
+            records = (data.T.to_json())
+        except Exception as e:
+            raise NetworkSecurityException(e, sys)
