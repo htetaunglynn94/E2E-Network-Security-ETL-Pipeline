@@ -23,15 +23,19 @@ class DataIngestionConfig:
         - tts_ratio (train-tetst-split ratio)
         - collection_name (MongoDB collection name)
         - db_name (Database name)
-        """
-        self.di_dir:str = os.path.join(training_pipeline_config.artifact_dir, training_pipeline.DI_DIR_NAME)
-        self.fsfp:str = os.path.join(training_pipeline_config.data_ingestion_dir, 
+        """ 
+
+        # Remove "data_ingestion" directory by eliminating the following code
+        # self.di_dir:str = os.path.join(training_pipeline_config.artifact_dir, 
+        #                                training_pipeline.DI_DIR_NAME)
+        self.di_dir: str = training_pipeline_config.artifact_dir
+        self.fsfp:str = os.path.join(self.di_dir, 
                                      training_pipeline.DI_FEATURE_STORE_DIR,
                                      training_pipeline.FILE_NAME)
-        self.tin_fp:str = os.path.join(training_pipeline_config.data_ingestion_dir, 
+        self.tin_fp:str = os.path.join(self.di_dir, 
                                        training_pipeline.DI_INGESTED_DIR,
                                        training_pipeline.TRAIN_FILE_NAME)
-        self.tst_fp:str = os.path.join(training_pipeline_config.data_ingestion_dir, 
+        self.tst_fp:str = os.path.join(self.di_dir, 
                                        training_pipeline.DI_INGESTED_DIR,
                                        training_pipeline.TEST_FILE_NAME)
         self.tts_ratio:float = training_pipeline.DI_TTS_RATIO

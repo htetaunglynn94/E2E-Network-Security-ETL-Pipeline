@@ -11,6 +11,7 @@ from network_security.logging.logger import logging
 
 # Configure Data Ingestion
 from network_security.entity.config_entity import DataIngestionConfig
+from network_security.entity.artifact_entity import DataIngestionArtifact
 
 # Import scikit-learn libraries
 from sklearn.model_selection import train_test_split as TTS
@@ -61,22 +62,22 @@ class DataIngestion:
         try:
             train_set, test_set = TTS(dataframe, test_size=self.data_ingestion_config.tts_ratio, random_state=42)
             
-            logging.info("Performed train-test split on dataframe")
-            logging.info("Exited split_data_as_train_test method of DataIngestion class")
+            logging.info("Performed train-test split on dataframe.")
+            logging.info("Exited split_data_as_train_test method of Data Ingestion class.")
 
-            train_path = self.data_ingestion_config.tin_fp
-            test_path = self.data_ingestion_config.tst_fp
+            self.train_path = self.data_ingestion_config.tin_fp
+            self.test_path = self.data_ingestion_config.tst_fp
 
             # Create directory
-            train_dir_path = os.path.dirname(train_path)
+            train_dir_path = os.path.dirname(self.train_path)
             os.makedirs(train_dir_path, exist_ok=True)
-            test_dir_path = os.path.dirname(test_path)
+            test_dir_path = os.path.dirname(self.test_path)
             os.makedirs(test_dir_path, exist_ok=True)
 
             logging.info("Exporting train and test file path.")
 
-            train_set.to_csv(self.data_ingestion_config.tin_fp, index=False, header=True)
-            test_set.to_csv(self.data_ingestion_config.tst_fp, index=False, header=True)
+            train_set.to_csv(self.train_path, index=False, header=True)
+            test_set.to_csv(self.test_path, index=False, header=True)
 
         except Exception as e:
             raise NetworkSecurityException(e, sys)
@@ -86,7 +87,11 @@ class DataIngestion:
             dataframe = self.export_collection_as_dataframe()
             dataframe = self.export_data_into_feature_store(dataframe)
             self.split_data_as_train_test(dataframe)
-
+            dataingestionartifact = DataIngestionArtifact(
+                                            trained_file_path = self.train_path,
+                                            test_file_path = self.test_path)
+            return dataingestionartifact
+        
         except Exception as e:
             raise NetworkSecurityException(e, sys)
 

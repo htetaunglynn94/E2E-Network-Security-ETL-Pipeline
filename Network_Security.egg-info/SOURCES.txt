@@ -12,6 +12,7 @@ network_security/components/data_ingestion.py
 network_security/constant/__init__.py
 network_security/constant/training_pipeline/__init__.py
 network_security/entity/__init__.py
+network_security/entity/artifact_entity.py
 network_security/entity/config_entity.py
 network_security/exception/__init__.py
 network_security/exception/exception.py
