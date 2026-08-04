@@ -39,7 +39,8 @@ class NetworkDataExtract():
             self.collection = collection
             self.records = records
 
-            self.mongo_client = pymongo.MongoClient(MONGO_DB_URL)
+            # Pass tlsCAFile=ca here so MongoDB trusts the SSL certificate
+            self.mongo_client = pymongo.MongoClient(MONGO_DB_URL, tlsCAFile=ca)
             self.database = self.mongo_client[self.database]
             self.collection = self.database[self.collection]
             self.collection.insert_many(self.records)
