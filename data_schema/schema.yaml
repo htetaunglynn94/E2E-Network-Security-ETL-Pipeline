@@ -1,4 +1,4 @@
-columns:
+columns_dtypes:
   - having_IP_Address: int64
   - URL_Length: int64
   - Shortining_Service: int64
