@@ -12,6 +12,7 @@ class TrainingPipelineConfig:
         self.artifact_dir  = os.path.join(self.artifact_name, timestamp)
         self.timestamp:str = timestamp
 
+## DATA INGESTION CONFIGURATION
 class DataIngestionConfig:
     def __init__(self, training_pipeline_config: TrainingPipelineConfig):
         """
@@ -40,6 +41,7 @@ class DataIngestionConfig:
         self.collection_name:str = training_pipeline.DI_COLLECTION_NAME
         self.db_name:str = training_pipeline.DI_DB_NAME
 
+# DATA VALIDATION CONFIGURATION
 class DataValidationConfig:
     def __init__(self, training_pipeline_conf: TrainingPipelineConfig):
         """
@@ -56,17 +58,33 @@ class DataValidationConfig:
         self.dv_dir:str = os.path.join(training_pipeline_conf.artifact_dir,
                                         training_pipeline.DV_DIR_NAME)
         self.vad_data_dir:str = os.path.join(self.dv_dir, 
-                                                training_pipeline.DV_VALID_DIR)
+                                            training_pipeline.DV_VALID_DIR)
         self.invad_data_dir:str = os.path.join(self.dv_dir,
-                                                  training_pipeline.DV_INVALID_DIR)
-        self.vad_tin_fp:str = os.path.join(self.vad_data_dir, 
+                                                training_pipeline.DV_INVALID_DIR)
+        self.vad_tin_fp:str = os.path.join(self.vad_data_dir,
                                            training_pipeline.TRAIN_FILE_NAME)
         self.vad_tst_fp:str = os.path.join(self.vad_data_dir, 
-                                           training_pipeline.TEST_FILE_NAME)
-        self.invad_tin_fp:str = os.path.join(self.invad_data_dir, 
-                                             training_pipeline.TRAIN_FILE_NAME)
+                                            training_pipeline.TEST_FILE_NAME)
+        self.invad_tin_fp:str = os.path.join(self.invad_data_dir,
+                                            training_pipeline.TRAIN_FILE_NAME)
         self.invad_tst_fp:str = os.path.join(self.invad_data_dir, 
-                                             training_pipeline.TEST_FILE_NAME)
+                                            training_pipeline.TEST_FILE_NAME)
         self.dft_report_fp:str = os.path.join(self.dv_dir, 
                                               training_pipeline.DV_DRIFT_REPORT_DIR, 
                                               training_pipeline.DV_DRIFT_REPORT_FILE_NAME)
+
+# DATA TRANSFORMATION CONFIGURATION
+class DataTransformationConfig:
+    def __init__(self, training_pipeline_conf: TrainingPipelineConfig):
+        self.dt_dir:str = os.path.join(training_pipeline_conf.artifact_dir, 
+                                        training_pipeline.DT_DIR_NAME)
+        self.transformed_train_fp:str = os.path.join(self.dt_dir, 
+                                                    training_pipeline.DT_TRANSFORMED_DATA_DIR, 
+                                                    training_pipeline.TRAIN_FILE_NAME.replace("csv", "npz"))
+        self.transformed_test_fp:str = os.path.join(self.dt_dir, 
+                                                   training_pipeline.DT_TRANSFORMED_DATA_DIR, 
+                                                   training_pipeline.TEST_FILE_NAME.replace("csv", "npz"))
+        self.transformed_obj_fp:str = os.path.join(self.dt_dir, training_pipeline.DT_TRANSFORMED_OBJ_DIR,
+        training_pipeline.PREPROCESSING_OBJ_FILE_NAME)
+
+

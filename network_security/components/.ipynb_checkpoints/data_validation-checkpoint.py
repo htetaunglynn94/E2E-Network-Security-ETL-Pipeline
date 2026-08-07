@@ -32,7 +32,7 @@ class DataValidation:
 
     def validate_num_of_cols(self, dataframe:pd.DataFrame) -> bool:
         try:
-            num_of_cols = len(self._schema_conf['numerical_columns'])
+            num_of_cols = len(self._schema_conf)
             logging.info(f"Required number of columns: {num_of_cols}")
             logging.info(f"Data frame has {len(dataframe.columns)} columns.")
             if len(dataframe.columns) == num_of_cols:
@@ -111,6 +111,8 @@ class DataValidation:
             if status["test"]["step2"]:
                 logging.info("Data types in test data are matched.\n")
 
+            # dir_path = os.path.dirname(self.dv_conf.dft_report_fp)
+            # os.makedirs(dir_path, exist_ok=True)
             os.makedirs(self.dv_conf.dft_report_fp, exist_ok=True)
             os.makedirs(self.dv_conf.vad_data_dir, exist_ok=True)
             os.makedirs(self.dv_conf.invad_data_dir, exist_ok=True)
