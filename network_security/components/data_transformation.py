@@ -37,7 +37,7 @@ class DataTransformation:
         except Exception as e:
             raise NetworkSecurityException(e, sys)
 
-    def get_data_transformator_obj(self) -> Pipeline:
+    def get_data_transformer_obj(self) -> Pipeline:
         """
         Initialize KNNImputer object with parameters specified in the constant file (training_pipeline/__init__.py).
         and returns a Pipeline object with KNNImputer as the first step.
@@ -46,8 +46,12 @@ class DataTransformation:
 
         Returns: Pipeline object
         """
+        logging.info("Enter get_data_transformer_obj method of transformation class")
         try:
-            pass
+            imputer:KNNImputer = KNNImputer(**DT_TRANSOFRMATION_IMPUTER_PARAS)
+            # Note: ** unpack dictionary arguments
+            logging.info(f"Initiate KNNImputer with {DT_TRANSOFRMATION_IMPUTER_PARAS}")
+            
 
         except Exception as e:
             raise NetworkSecurityException(e, sys)
