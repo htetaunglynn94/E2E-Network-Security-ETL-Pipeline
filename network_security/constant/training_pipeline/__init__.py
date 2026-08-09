@@ -1,4 +1,5 @@
 import os
+import numpy as np
 
 # Constant Information for DATA INGESTION
 ## Define common constant variable for training pipeline
@@ -34,7 +35,7 @@ DV_DRIFT_REPORT_FILE_NAME:str = "report.yaml"
 DT_DIR_NAME:str = "data_transformation"
 DT_TRANSFORMED_DATA_DIR:str = "transformed_data"
 DT_TRANSFORMED_OBJ_DIR:str = "transformed_object"
-PREPROCESSING_OBJ_FILE_NAME:str = ""
+PREPROCESSING_OBJ_FILE_NAME:str = "preprocessing.pkl"
 
 ## KNN imputer to replace missing values
 DT_TRANSOFRMATION_IMPUTER_PARAS:dict = {"missing_values": np.nan,
