@@ -87,4 +87,15 @@ class DataTransformationConfig:
         self.transformed_obj_fp:str = os.path.join(self.dt_dir, training_pipeline.DT_TRANSFORMED_OBJ_DIR,
         training_pipeline.PREPROCESSING_OBJ_FILE_NAME)
 
+# MODEL TRAINER CONFIGURATION
+class ModelTrainerConfig:
+    def __init__(self, training_pipeline_conf: TrainingPipelineConfig):
+        self.mt_dir:str = os.path.join(training_pipeline_conf.artifact_dir,
+                                    training_pipeline.MT_DIR_NAME)
+        self.trained_mdl_fp:str = os.path.join(self.mt_dir, 
+                                    training_pipeline.MT_MODEL_DIR,
+                                    training_pipeline.MT_MODEL_NAME)
+        self.expected_accuracy:float = training_pipeline.MT_EXPECTED_SCORE
+        self.over_and_under_fitting_threshold:float = training_pipeline.MT_OVER_AND_UNDER_FITTING_THRESHOLD
+
 

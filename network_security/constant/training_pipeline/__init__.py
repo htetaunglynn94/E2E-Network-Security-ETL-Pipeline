@@ -11,6 +11,8 @@ FILE_NAME:str = "phisingData.csv"       # raw data file
 TRAIN_FILE_NAME:str = "train.csv"       # traiining data file
 TEST_FILE_NAME:str = "test.csv"         # testing data file
 SCHEMA_FILE_PATH:str = os.path.join("data_schema", "schema.yaml")
+SAVED_MODEL_DIR:str = os.path.join("saved_models")
+MODEL_FILE_NAME = "model.pkl"
 
 ## Data ingestion related constant start with DI_VARNAME
 
@@ -41,3 +43,13 @@ PREPROCESSING_OBJ_FILE_NAME:str = "preprocessing.pkl"
 DT_TRANSOFRMATION_IMPUTER_PARAS:dict = {"missing_values": np.nan,
                                         "n_neighbors": 3,
                                         "weights": 'uniform'}          
+DT_TRAIN_FILE_PATH:str = "train.npy"
+DT_TEST_FILE_PATH:str = "test.npy"
+
+# Constant Information for MODEL TRAINING
+## Model training related conatant start with MT_VARNAME
+MT_DIR_NAME:str = "model_trainer"
+MT_MODEL_DIR:str = "trained_model"
+MT_MODEL_NAME:str = "model.pkl"
+MT_EXPECTED_SCORE:float = 0.6
+MT_OVER_AND_UNDER_FITTING_THRESHOLD:float = 0.05

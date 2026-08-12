@@ -14,7 +14,7 @@ from network_security.entity.config_entity import DataTransformationConfig
 from network_security.entity.artifact_entity import (DataTransformationArtifact, 
                                                     DataValidationArtifact)
 from network_security.constant.training_pipeline import DT_TRANSOFRMATION_IMPUTER_PARAS
-from network_security.utils.main_utils.utils import save_objects, save_numpy_array_data
+from network_security.utils.main_utils.utils import save_object, save_numpy_array_data
 
 class DataTransformation:
     def __init__(self, 
@@ -68,13 +68,14 @@ class DataTransformation:
             transformed_train_data = preprocessor_obj.fit_transform(train_ip_data)
             transformed_test_data  = preprocessor_obj.transform(test_ip_data)
 
+            # Concatinate numpy arrays by column-wise
             train_arr = np.c_[transformed_train_data, np.array(train_op_data)]
             test_arr  = np.c_[transformed_test_data, np.array(test_op_data)]
 
             # Save numpy array data
             save_numpy_array_data(self.dt_conf.transformed_train_fp, array=train_arr)
             save_numpy_array_data(self.dt_conf.transformed_test_fp, array=test_arr)
-            save_objects(self.dt_conf.transformed_obj_fp, preprocessor_obj)
+            save_object(self.dt_conf.transformed_obj_fp, preprocessor_obj)
 
             # Prepare artifacts
             dt_artifact = DataTransformationArtifact(
