@@ -1,0 +1,34 @@
+[2026-08-12 14:14:03,832] line no:21-root-INFO-Initiate the data ingestion.
+[2026-08-12 14:14:04,593] line no:65-root-INFO-Performed train-test split on dataframe.
+[2026-08-12 14:14:04,593] line no:66-root-INFO-Exited split_data_as_train_test method of Data Ingestion class.
+[2026-08-12 14:14:04,593] line no:77-root-INFO-Exporting train and test file path.
+[2026-08-12 14:14:04,613] line no:23-root-INFO-Data initiation completed successfully.
+[2026-08-12 14:14:04,615] line no:29-root-INFO-Initiate the data validation.
+[2026-08-12 14:14:04,624] line no:36-root-INFO-Required number of columns: 31
+[2026-08-12 14:14:04,624] line no:37-root-INFO-Data frame has 31 columns.
+[2026-08-12 14:14:04,624] line no:101-root-INFO-Train data contains all columns.
+
+[2026-08-12 14:14:04,624] line no:36-root-INFO-Required number of columns: 31
+[2026-08-12 14:14:04,624] line no:37-root-INFO-Data frame has 31 columns.
+[2026-08-12 14:14:04,624] line no:104-root-INFO-Test data contains all columns.
+
+[2026-08-12 14:14:04,625] line no:53-root-INFO-Missed columns: 0 | Type mismatches: 0
+[2026-08-12 14:14:04,625] line no:109-root-INFO-Data types in train data are matched.
+
+[2026-08-12 14:14:04,626] line no:53-root-INFO-Missed columns: 0 | Type mismatches: 0
+[2026-08-12 14:14:04,626] line no:112-root-INFO-Data types in test data are matched.
+
+[2026-08-12 14:14:04,649] line no:31-root-INFO-Data validation completed successfully.
+[2026-08-12 14:14:04,649] line no:37-root-INFO-Initiate the data transformation.
+[2026-08-12 14:14:04,649] line no:62-root-INFO-Entered the initiate_data_transformation method of DataTransformation class
+[2026-08-12 14:14:04,649] line no:64-root-INFO-Starting data transformation process
+[2026-08-12 14:14:04,665] line no:49-root-INFO-Enter get_data_transformer_obj method of transformation class
+[2026-08-12 14:14:04,665] line no:53-root-INFO-Initiate KNNImputer with {'missing_values': nan, 'n_neighbors': 3, 'weights': 'uniform'}
+[2026-08-12 14:14:04,668] line no:44-root-INFO-Entered the save_object method of MainUtils class
+[2026-08-12 14:14:04,669] line no:48-root-INFO-Exited the save_object method of MainUtils class
+[2026-08-12 14:14:04,669] line no:40-root-INFO-Data transformation completed successfully.
+[2026-08-12 14:14:04,669] line no:45-root-INFO-Initiate the model training.
+[2026-08-12 14:18:28,384] line no:44-root-INFO-Entered the save_object method of MainUtils class
+[2026-08-12 14:18:28,389] line no:48-root-INFO-Exited the save_object method of MainUtils class
+[2026-08-12 14:18:28,389] line no:140-root-INFO-Model trainer artifact: ModelTrainerArtifact(trained_model_path='artifacts/2026_08_12_14_14_03/model_trainer/trained_model/model.pkl', train_metric_artifact=ClassificationMetricArtifact(f1_score=0.9915573186857899, precision_score=0.9888415500101441, recall_score=0.9942880456956344), test_metric_artifact=ClassificationMetricArtifact(f1_score=0.970367443698143, precision_score=0.9623824451410659, recall_score=0.9784860557768924))
+[2026-08-12 14:18:28,390] line no:48-root-INFO-Model training completed successfully.

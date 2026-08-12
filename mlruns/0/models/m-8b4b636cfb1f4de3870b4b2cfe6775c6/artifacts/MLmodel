@@ -1,0 +1,23 @@
+artifact_path: /home/htet-aung-lynn/Study/E2E-Network-Security-ETL-Pipeline/mlruns/0/models/m-8b4b636cfb1f4de3870b4b2cfe6775c6/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.skops
+    predict_fn: predict
+    python_version: 3.10.0
+  sklearn:
+    code: null
+    pickled_model: model.skops
+    serialization_format: skops
+    sklearn_version: 1.7.2
+    skops_trusted_types: null
+mlflow_version: 3.15.1
+model_id: m-8b4b636cfb1f4de3870b4b2cfe6775c6
+model_size_bytes: 8581037
+model_uuid: m-8b4b636cfb1f4de3870b4b2cfe6775c6
+prompts: null
+run_id: da4bc3fe20274910ac270826c9e181bd
+utc_time_created: '2026-08-12 06:18:25.378029'

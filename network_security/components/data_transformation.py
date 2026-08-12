@@ -79,9 +79,9 @@ class DataTransformation:
 
             # Prepare artifacts
             dt_artifact = DataTransformationArtifact(
-                                        transformed_object_path=self.dt_conf.transformed_obj_fp,
-                                        transformed_train_path=self.dt_conf.transformed_train_fp,
-                                        transformed_test_path=self.dt_conf.transformed_test_fp
+                                        transformed_object_path = self.dt_conf.transformed_obj_fp,
+                                        transformed_train_path = self.dt_conf.transformed_train_fp,
+                                        transformed_test_path = self.dt_conf.transformed_test_fp
                                         )
 
             return dt_artifact

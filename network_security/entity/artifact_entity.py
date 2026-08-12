@@ -20,7 +20,7 @@ class DataTransformationArtifact:
     transformed_train_path: str
     transformed_test_path: str
 
-@datalass
+@dataclass
 class ClassificationMetricArtifact:
     f1_score: float
     precision_score: float

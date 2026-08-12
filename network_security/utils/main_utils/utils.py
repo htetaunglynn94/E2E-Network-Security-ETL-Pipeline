@@ -4,6 +4,9 @@ import os, sys, yaml, dill, pickle
 from network_security.exception.exception import NetworkSecurityException
 from network_security.logging.logger import logging
 
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import r2_score
+
 def read_yaml_file(file_path: str) -> dict:
     try:
         with open(file_path, 'rb') as yf:
