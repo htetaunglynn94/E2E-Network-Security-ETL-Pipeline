@@ -136,6 +136,9 @@ class ModelTrainer:
         network_model = NetworkModel(preprocessor=preprocessor, model=best_model)
         save_object(file_path=model_path, obj=network_model)
 
+        ## Model pusher
+        save_object("final_model/ml_model.pkl", best_model)
+
         ## 7. Build and return the final model trainer artifact
         model_trainer_artifact = ModelTrainerArtifact(
                                     trained_model_path = model_path,
