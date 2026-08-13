@@ -9,5 +9,6 @@ pymongo[srv]==3.11
 scikit-learn
 pyaml
 mlflow
+dagshub
 
 -e .

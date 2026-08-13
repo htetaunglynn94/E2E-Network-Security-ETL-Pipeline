@@ -22,6 +22,12 @@ from sklearn.ensemble import (
                 RandomForestClassifier
                 )
 
+# Copy this ccode from DagsHub
+import dagshub
+dagshub.init(   repo_owner = 'htetaunglynn94', 
+                repo_name = 'E2E-Network-Security-ETL-Pipeline', 
+                mlflow = True)
+
 
 class ModelTrainer:
     def __init__(self, 
