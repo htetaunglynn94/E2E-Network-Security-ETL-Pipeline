@@ -85,7 +85,9 @@ class DataTransformationConfig:
                                                    training_pipeline.DT_TRANSFORMED_DATA_DIR, 
                                                    training_pipeline.TEST_FILE_NAME.replace("csv", "npz"))
         self.transformed_obj_fp:str = os.path.join(self.dt_dir, training_pipeline.DT_TRANSFORMED_OBJ_DIR,
-        training_pipeline.PREPROCESSING_OBJ_FILE_NAME)
+        training_pipeline.PREPROCESSOR_OBJ_FILE_NAME)
+        self.preprocessor_obj:str = os.path.join(training_pipeline.MT_FINAL_MODEL_DIR, 
+                                                 training_pipeline.PREPROCESSOR_OBJ_FILE_NAME)
 
 # MODEL TRAINER CONFIGURATION
 class ModelTrainerConfig:
@@ -97,5 +99,11 @@ class ModelTrainerConfig:
                                     training_pipeline.MT_MODEL_NAME)
         self.expected_accuracy:float = training_pipeline.MT_EXPECTED_SCORE
         self.over_and_under_fitting_threshold:float = training_pipeline.MT_OVER_AND_UNDER_FITTING_THRESHOLD
+        self.mt_final_model:str = os.path.join(training_pipeline.MT_FINAL_MODEL_DIR, 
+                                             training_pipeline.MT_FINAL_MODEL)
 
-
+# MODEL PREDICTION CONFIGURATION
+class ModelPredictionConfig:
+    def __init__(self, training_pipeline_conf: TrainingPipelineConfig):
+        self.mp_output_data:str = os.path.join(training_pipeline.MP_DIR_NAME, 
+                                               training_pipeline.MP_DATA)

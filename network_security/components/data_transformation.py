@@ -78,7 +78,8 @@ class DataTransformation:
             save_object(self.dt_conf.transformed_obj_fp, preprocessor_obj)
 
             ## Model pusher
-            save_object("final_model/preprocessor.pkl", preprocessor_obj)
+            # save_object("final_model/preprocessor.pkl", preprocessor_obj)
+            save_object(self.dt_conf.preprocessor_obj, preprocessor_obj)
 
             # Prepare artifacts
             dt_artifact = DataTransformationArtifact(

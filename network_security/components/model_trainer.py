@@ -85,18 +85,18 @@ class ModelTrainer:
 
         ## Hyperparameters
         params = {  "Decision Tree": {  'criterion':['gini','entropy','log_loss'],
-                                        # 'splitter': ['best','random'],
+                                        'splitter': ['best','random'],
                                         'max_features': ['sqrt','log2']
                                      },
                     "Random Forest": {  'n_estimators': [8,16,32,64,128,256],
                                         'criterion': ['gini','entropy','log_loss'],
-                                        # 'max_features': ['sqrt','log2',None],
+                                        'max_features': ['sqrt','log2',None],
                                      },
                     "Gradient Boosting": {
                                             'learning_rate': [.1,.01,.05,.001],
                                             'loss': ['log_loss', 'exponential'],
-                                            # 'subsample': [0.6,0.7,0.8,0.85,0.9],
-                                            # 'criterion': ['squared_error','friedman_mse'],
+                                            'subsample': [0.6,0.7,0.8,0.85,0.9],
+                                            'criterion': ['squared_error','friedman_mse'],
                                             'max_features': ['auto','sqrt','log2'],
                                             'n_estimators': [8,16,32,128,256]
                                          },
@@ -137,7 +137,8 @@ class ModelTrainer:
         save_object(file_path=model_path, obj=network_model)
 
         ## Model pusher
-        save_object("final_model/ml_model.pkl", best_model)
+        # save_object("final_model/ml_model.pkl", best_model)
+        save_object(self.model_trainer_conf.mt_final_model, best_model)
 
         ## 7. Build and return the final model trainer artifact
         model_trainer_artifact = ModelTrainerArtifact(

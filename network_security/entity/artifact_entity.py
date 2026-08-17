@@ -31,6 +31,8 @@ class ModelTrainerArtifact:
     trained_model_path: str
     train_metric_artifact: ClassificationMetricArtifact
     test_metric_artifact: ClassificationMetricArtifact
+    final_model_path: str
+    final_ml_model_name: str
 
 
 

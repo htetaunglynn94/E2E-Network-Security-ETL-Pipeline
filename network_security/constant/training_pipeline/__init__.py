@@ -13,6 +13,7 @@ TEST_FILE_NAME:str = "test.csv"         # testing data file
 SCHEMA_FILE_PATH:str = os.path.join("data_schema", "schema.yaml")
 SAVED_MODEL_DIR:str = os.path.join("saved_models")
 MODEL_FILE_NAME = "model.pkl"
+MT_FINAL_MODEL_DIR:str = "final_model"
 
 ## Data ingestion related constant start with DI_VARNAME
 
@@ -37,7 +38,7 @@ DV_DRIFT_REPORT_FILE_NAME:str = "report.yaml"
 DT_DIR_NAME:str = "data_transformation"
 DT_TRANSFORMED_DATA_DIR:str = "transformed_data"
 DT_TRANSFORMED_OBJ_DIR:str = "transformed_object"
-PREPROCESSING_OBJ_FILE_NAME:str = "preprocessing.pkl"
+PREPROCESSOR_OBJ_FILE_NAME:str = "preprocessor.pkl"
 
 ## KNN imputer to replace missing values
 DT_TRANSOFRMATION_IMPUTER_PARAS:dict = {"missing_values": np.nan,
@@ -53,3 +54,9 @@ MT_MODEL_DIR:str = "trained_model"
 MT_MODEL_NAME:str = "model.pkl"
 MT_EXPECTED_SCORE:float = 0.6
 MT_OVER_AND_UNDER_FITTING_THRESHOLD:float = 0.05
+MT_FINAL_MODEL:str = "ml_model.pkl"
+
+# Constant Information for MODEL PREDICTION
+## Model prediction related conatant start with MT_VARNAME
+MP_DIR_NAME:str = "predicted_output"
+MP_DATA:str = "predicted_data.csv"

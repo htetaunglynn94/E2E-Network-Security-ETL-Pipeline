@@ -12,8 +12,15 @@ from network_security.logging.logger import logging
 from network_security.exception.exception import NetworkSecurityException
 from network_security.pipeline.training_pipeline import TrainingPipeline
 from network_security.constant.training_pipeline import DI_COLLECTION_NAME, DI_DB_NAME
+from network_security.entity.config_entity import (DataTransformationConfig,
+                                                   ModelTrainerConfig,
+                                                   ModelPredictionConfig,
+                                                   TrainingPipelineConfig)
+
 
 from network_security.utils.main_utils.utils import load_object
+from network_security.utils.ml_utils.model.estimator import NetworkModel
+from fastapi.templating import Jinja2Templates
 
 ca = certifi.where()
 load_dotenv()
@@ -26,6 +33,7 @@ collection = database[DI_COLLECTION_NAME]
 
 app = FastAPI()
 origins = ["*"]
+templates = Jinja2Templates(directory="./templates")
 
 app.add_middleware( CORSMiddleware,
                     allow_origins = origins,
@@ -44,6 +52,34 @@ async def train_route():
         training_pipeline.run_pipeline()
         return Response("Training is successful.")
 
+    except Exception as e:
+        raise NetworkSecurityException(e, sys)
+
+@app.post("/predict")
+async def predict_route(request: Request, file: UploadFile=File(...)):
+    try:
+        df = pd.read_csv(file.file)
+
+        train_pipeline_conf = TrainingPipelineConfig()
+        dt_conf = DataTransformationConfig(train_pipeline_conf)
+        mt_conf = ModelTrainerConfig(train_pipeline_conf)
+        mp_conf = ModelPredictionConfig(train_pipeline_conf)
+
+        preprocessor = load_object(dt_conf.preprocessor_obj)
+        final_model = load_object(mt_conf.mt_final_model)
+
+        network_model = NetworkModel(preprocessor, final_model)
+        print(df.iloc[0])
+        y_pred = network_model.predict(df)
+        print(y_pred)
+        df['predicted_column'] = y_pred
+        df.to_csv(mp_conf.mp_output_data)
+        table_html = df.to_html(classes='table table-striped')
+        print(table_html)
+
+        return templates.TemplateResponse(  request=request,
+                                            name="table.html", 
+                                            context={"table": table_html})
     except Exception as e:
         raise NetworkSecurityException(e, sys)
 
