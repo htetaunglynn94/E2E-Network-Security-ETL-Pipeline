@@ -10,6 +10,7 @@ from network_security.exception.exception import NetworkSecurityException
 from network_security.utils.main_utils.utils import save_object, load_object, load_numpy_array_data
 from network_security.utils.ml_utils.metric.classification_metric import get_classification_score
 from network_security.entity.artifact_entity import DataTransformationArtifact, ModelTrainerArtifact
+# from network_security.constant import training_pipeline
 
 
 from sklearn.linear_model import LogisticRegression
@@ -89,15 +90,15 @@ class ModelTrainer:
                                         'max_features': ['sqrt','log2']
                                      },
                     "Random Forest": {  'n_estimators': [8,16,32,64,128,256],
-                                        'criterion': ['gini','entropy','log_loss'],
+                                        # 'criterion': ['gini','entropy','log_loss'],
                                         'max_features': ['sqrt','log2',None],
                                      },
                     "Gradient Boosting": {
                                             'learning_rate': [.1,.01,.05,.001],
                                             'loss': ['log_loss', 'exponential'],
-                                            'subsample': [0.6,0.7,0.8,0.85,0.9],
-                                            'criterion': ['squared_error','friedman_mse'],
-                                            'max_features': ['auto','sqrt','log2'],
+                                            # 'subsample': [0.6,0.7,0.8,0.85,0.9],
+                                            # 'criterion': ['squared_error','friedman_mse'],
+                                            # 'max_features': ['auto','sqrt','log2'],
                                             'n_estimators': [8,16,32,128,256]
                                          },
                     "Logistic Regression": {},
@@ -144,8 +145,9 @@ class ModelTrainer:
         model_trainer_artifact = ModelTrainerArtifact(
                                     trained_model_path = model_path,
                                     train_metric_artifact = classfication_train_metric,
-                                    test_metric_artifact = classification_test_metric
-                                    )
+                                    test_metric_artifact = classification_test_metric)
+                                    # final_model_path = self.model_trainer_conf.mt_final_model,
+                                    # final_ml_model_name = self.model_trainer_conf.mt_final_model)
 
         logging.info("Model trainer artifact: %s" % model_trainer_artifact)
         return model_trainer_artifact

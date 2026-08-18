@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, File, UploadFile, Request
-from fastapi.responses import Response
+from fastapi.responses import Response, FileResponse
 from uvicorn import run as app_run
 from starlette.responses import RedirectResponse
 
@@ -74,12 +74,22 @@ async def predict_route(request: Request, file: UploadFile=File(...)):
         print(y_pred)
         df['predicted_column'] = y_pred
         df.to_csv(mp_conf.mp_output_data)
-        table_html = df.to_html(classes='table table-striped')
-        print(table_html)
+        table_html = df.to_html(classes='table table-striped', index=False)
+        
+        # Render template using Jinja2
+        template = templates.get_template("table.html")
+        html_content = template.render({"request": request, "table": table_html})
 
-        return templates.TemplateResponse(  request=request,
-                                            name="table.html", 
-                                            context={"table": table_html})
+        # Save the rendered HTML to a local file path
+        output_file_path = os.path.join("templates", "predictions.html")
+        with open(output_file_path, "w", encoding="utf-8") as f:
+            f.write(html_content)
+
+
+        return FileResponse(path=output_file_path,
+                            media_type="text/html", 
+                            filename='predictions.html')
+
     except Exception as e:
         raise NetworkSecurityException(e, sys)
 

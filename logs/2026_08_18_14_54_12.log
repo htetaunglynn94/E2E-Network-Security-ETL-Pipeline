@@ -1,0 +1,44 @@
+[2026-08-18 14:54:13,853] line no:1025-httpx-INFO-HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-08-18 14:54:13,861] line no:107-dagshub-INFO-Accessing as htetaunglynn94
+[2026-08-18 14:54:14,552] line no:1025-httpx-INFO-HTTP Request: GET https://dagshub.com/api/v1/repos/htetaunglynn94/E2E-Network-Security-ETL-Pipeline "HTTP/1.1 200 OK"
+[2026-08-18 14:54:15,257] line no:1025-httpx-INFO-HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-08-18 14:54:15,260] line no:107-dagshub-INFO-Initialized MLflow to track repo "htetaunglynn94/E2E-Network-Security-ETL-Pipeline"
+[2026-08-18 14:54:15,260] line no:107-dagshub-INFO-Repository htetaunglynn94/E2E-Network-Security-ETL-Pipeline initialized!
+[2026-08-18 14:54:26,928] line no:37-root-INFO-Start data ingestion
+[2026-08-18 14:54:27,594] line no:65-root-INFO-Performed train-test split on dataframe.
+[2026-08-18 14:54:27,594] line no:66-root-INFO-Exited split_data_as_train_test method of Data Ingestion class.
+[2026-08-18 14:54:27,594] line no:77-root-INFO-Exporting train and test file path.
+[2026-08-18 14:54:27,627] line no:40-root-INFO-Data initiation completed and artifact: DataIngestionArtifact(trained_file_path='artifacts/2026_08_18_14_54_12/data_ingestion/ingested/train.csv', test_file_path='artifacts/2026_08_18_14_54_12/data_ingestion/ingested/test.csv')
+[2026-08-18 14:54:27,630] line no:52-root-INFO-Initiate the data validation.
+[2026-08-18 14:54:27,640] line no:36-root-INFO-Required number of columns: 31
+[2026-08-18 14:54:27,640] line no:37-root-INFO-Data frame has 31 columns.
+[2026-08-18 14:54:27,640] line no:101-root-INFO-Train data contains all columns.
+
+[2026-08-18 14:54:27,640] line no:36-root-INFO-Required number of columns: 31
+[2026-08-18 14:54:27,640] line no:37-root-INFO-Data frame has 31 columns.
+[2026-08-18 14:54:27,640] line no:104-root-INFO-Test data contains all columns.
+
+[2026-08-18 14:54:27,640] line no:53-root-INFO-Missed columns: 0 | Type mismatches: 0
+[2026-08-18 14:54:27,640] line no:109-root-INFO-Data types in train data are matched.
+
+[2026-08-18 14:54:27,641] line no:53-root-INFO-Missed columns: 0 | Type mismatches: 0
+[2026-08-18 14:54:27,641] line no:112-root-INFO-Data types in test data are matched.
+
+[2026-08-18 14:54:27,679] line no:54-root-INFO-Data validation completed and artifact: DataValidationArtifact(validation_status={'train': {'step1': True, 'step2': True}, 'test': {'step1': True, 'step2': True}}, valid_train_file_path='artifacts/2026_08_18_14_54_12/data_ingestion/ingested/train.csv', valid_test_file_path='artifacts/2026_08_18_14_54_12/data_ingestion/ingested/test.csv', invalid_train_file_path=None, invalid_test_file_path=None, drift_report_file_path='artifacts/2026_08_18_14_54_12/data_validation/drift_report/report.yaml')
+[2026-08-18 14:54:27,679] line no:65-root-INFO-Initiate the data transformation.
+[2026-08-18 14:54:27,679] line no:62-root-INFO-Entered the initiate_data_transformation method of DataTransformation class
+[2026-08-18 14:54:27,679] line no:64-root-INFO-Starting data transformation process
+[2026-08-18 14:54:27,702] line no:49-root-INFO-Enter get_data_transformer_obj method of transformation class
+[2026-08-18 14:54:27,702] line no:53-root-INFO-Initiate KNNImputer with {'missing_values': nan, 'n_neighbors': 3, 'weights': 'uniform'}
+[2026-08-18 14:54:27,707] line no:44-root-INFO-Entered the save_object method of MainUtils class
+[2026-08-18 14:54:27,708] line no:48-root-INFO-Exited the save_object method of MainUtils class
+[2026-08-18 14:54:27,708] line no:44-root-INFO-Entered the save_object method of MainUtils class
+[2026-08-18 14:54:27,713] line no:48-root-INFO-Exited the save_object method of MainUtils class
+[2026-08-18 14:54:27,713] line no:67-root-INFO-Data transformation completed and artifact: DataTransformationArtifact(transformed_object_path='artifacts/2026_08_18_14_54_12/data_transformation/transformed_object/preprocessor.pkl', transformed_train_path='artifacts/2026_08_18_14_54_12/data_transformation/transformed_data/train.npz', transformed_test_path='artifacts/2026_08_18_14_54_12/data_transformation/transformed_data/test.npz')
+[2026-08-18 14:54:27,713] line no:78-root-INFO-Initiate the model training.
+[2026-08-18 14:56:01,331] line no:44-root-INFO-Entered the save_object method of MainUtils class
+[2026-08-18 14:56:01,347] line no:48-root-INFO-Exited the save_object method of MainUtils class
+[2026-08-18 14:56:01,347] line no:44-root-INFO-Entered the save_object method of MainUtils class
+[2026-08-18 14:56:01,369] line no:48-root-INFO-Exited the save_object method of MainUtils class
+[2026-08-18 14:56:01,369] line no:152-root-INFO-Model trainer artifact: ModelTrainerArtifact(trained_model_path='artifacts/2026_08_18_14_54_12/model_trainer/trained_model/model.pkl', train_metric_artifact=ClassificationMetricArtifact(f1_score=0.9915556007732221, precision_score=0.9890399837629389, recall_score=0.9940840473276213), test_metric_artifact=ClassificationMetricArtifact(f1_score=0.9707740916271722, precision_score=0.9624119028974158, recall_score=0.9792828685258964))
+[2026-08-18 14:56:01,370] line no:80-root-INFO-Model training completed and artifact: ModelTrainerArtifact(trained_model_path='artifacts/2026_08_18_14_54_12/model_trainer/trained_model/model.pkl', train_metric_artifact=ClassificationMetricArtifact(f1_score=0.9915556007732221, precision_score=0.9890399837629389, recall_score=0.9940840473276213), test_metric_artifact=ClassificationMetricArtifact(f1_score=0.9707740916271722, precision_score=0.9624119028974158, recall_score=0.9792828685258964))

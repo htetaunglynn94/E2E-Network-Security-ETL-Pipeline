@@ -20,10 +20,15 @@ from network_security.entity.artifact_entity import (DataIngestionArtifact,
                                                             ClassificationMetricArtifact,
                                                             ModelTrainerArtifact)
 
+from network_security.constant.training_pipeline import S3_TRAINING_BUCKET_NAME
+from network_security.cloud.s3_syncer import s3_sync
+from network_security.constant.training_pipeline import SAVED_MODEL_DIR
+
 
 class TrainingPipeline:
     def __init__(self):
         self.training_pipeline_conf = TrainingPipelineConfig()
+        self.s3_sync = s3_sync()
 
     # Start data ingestion
     def start_data_ingestion(self):
@@ -78,6 +83,28 @@ class TrainingPipeline:
         except Exception as e:
             raise NetworkSecurityException(e, sys)
 
+    ## Local artifacts will be uploaded to S3 bucket
+    def sync_artifact_dir_to_s3(self):
+        try:
+            aws_bucket_url = f"s3://{S3_TRAINING_BUCKET_NAME}/artifacts/{self.training_pipeline_conf.timestamp}"
+            self.s3_sync.sync_folder_to_s3(
+                                    folder = self.training_pipeline_conf.artifact_dir, # local directory
+                                    aws_bucket_url = aws_bucket_url)                   # cloud directory
+
+        except Exception as e:
+            raise NetworkSecurityException(e, sys)
+
+    ## Local final model will be uploaded to S3 bucket
+    def sync_saved_model_dir_to_s3(self):
+            try:
+                aws_bucket_url = f"s3://{S3_TRAINING_BUCKET_NAME}/final_model/{self.training_pipeline_conf.timestamp}"
+                self.s3_sync.sync_folder_to_s3(
+                                    folder = self.training_pipeline_conf.final_model_dir, # local directory
+                                    aws_bucket_url = aws_bucket_url)                      # cloud directory
+
+            except Exception as e:
+                raise NetworkSecurityException(e, sys)
+
     # Run pipeline
     def run_pipeline(self):
         try:
@@ -85,6 +112,9 @@ class TrainingPipeline:
             dv_artifact = self.start_data_validation(di_artifact)
             dt_artifact = self.start_data_transformation(dv_artifact)
             mt_artifact = self.start_model_training(dt_artifact)
+
+            # self.sync_artifact_dir_to_s3()
+            # self.sync_saved_model_dir_to_s3()
             return mt_artifact
 
         except Exception as e:

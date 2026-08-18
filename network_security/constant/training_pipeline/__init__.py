@@ -60,3 +60,8 @@ MT_FINAL_MODEL:str = "ml_model.pkl"
 ## Model prediction related conatant start with MT_VARNAME
 MP_DIR_NAME:str = "predicted_output"
 MP_DATA:str = "predicted_data.csv"
+
+# Constant Information for AWS S3
+## S3 related constant start with S3_VARNAME
+S3_TRAINING_BUCKET_NAME:str = "aws-s3-network-security"
+
