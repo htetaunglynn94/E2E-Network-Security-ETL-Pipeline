@@ -48,7 +48,7 @@ jobs:
                 id: build-image
                 env:
                     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-                    ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
+                    ECR_REPOSITORY: network-security
                     IMAGE_TAG: latest
                 run: |
                     IMAGE_NAME="${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}"
