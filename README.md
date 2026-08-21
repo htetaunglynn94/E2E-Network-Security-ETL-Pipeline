@@ -4,7 +4,7 @@
 This project implements a complete, production-grade End-to-End (E2E) Machine Learning and ETL pipeline designed for network security classification and anomaly detection. The system automates the entire lifecycle of data processing, model training, tracking, and cloud-native deployment using modern MLOps principles.
 
 > **Cloud Infrastructure Notice:** To prevent ongoing AWS charges, all cloud resources and EC2 instances associated with this live deployment have been terminated. However, you can view the complete operational workflow and end-to-end demonstration in the recorded video below:
-> > **Note**: The loading time of the WebApp may take more than a minute because of Render free version hosting.
+> **Note**: The loading time of the WebApp may take more than a minute because of Render free version hosting.
 
 🔗 [Watch the Project Demo Video](https://drive.google.com/file/d/1W3Usyvo-wlvA-Bm0AT3yciFDZewJthpt/view?usp=sharing)  
 
@@ -109,6 +109,7 @@ E2E-Network-Security-ETL-Pipeline/
 * Trains classification models using engineered feature sets.
 * Integrates experiment tracking via **DagsHub** to manage hyperparameters, artifacts, and training metrics.
 * Serializes the final trained estimator into a reusable artifact package (`NetworkModel`).
+* Trains and choose the best models from  `Random Forest`, `Decision Tree`, `Gradient Boosting`, `Logistic Regression` and `AdaBoost`.
 
 ---
 
