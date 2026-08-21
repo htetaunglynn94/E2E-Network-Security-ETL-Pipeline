@@ -10,12 +10,7 @@ from starlette.responses import RedirectResponse
 
 from network_security.logging.logger import logging
 from network_security.exception.exception import NetworkSecurityException
-from network_security.pipeline.training_pipeline import TrainingPipeline
 from network_security.constant.training_pipeline import DI_COLLECTION_NAME, DI_DB_NAME
-from network_security.entity.config_entity import (DataTransformationConfig,
-                                                   ModelTrainerConfig,
-                                                   ModelPredictionConfig,
-                                                   TrainingPipelineConfig)
 
 
 from network_security.utils.main_utils.utils import load_object
@@ -48,6 +43,8 @@ async def index():
 @app.get("/train")
 async def train_route():
     try:
+        # Lazy-load config classes only needed for prediction routing
+        from network_security.pipeline.training_pipeline import TrainingPipeline
         training_pipeline = TrainingPipeline()
         training_pipeline.run_pipeline()
         return Response("Training is successful.")
@@ -58,6 +55,12 @@ async def train_route():
 @app.post("/predict")
 async def predict_route(request: Request, file: UploadFile=File(...)):
     try:
+        # Lazy-load config classes only needed for prediction routing
+        from network_security.entity.config_entity import (DataTransformationConfig,
+                                                   ModelTrainerConfig,
+                                                   ModelPredictionConfig,
+                                                   TrainingPipelineConfig)
+
         df = pd.read_csv(file.file)
 
         train_pipeline_conf = TrainingPipelineConfig()
